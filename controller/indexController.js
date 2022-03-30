@@ -4,10 +4,10 @@ exports.signUp=(request,response)=>{
     console.log(request.body)
   userModel.create(request.body)
   .then(result=>{
-    return response.status(201).json(result);
+    return response.status(201).json({result:result});
   })
   .catch(err=>{
-    return response.status(500).json({msg:"server problem"});
+    return response.status(500).json({error : err});
   });
 }
 
@@ -17,10 +17,10 @@ exports.signIn=(request,response)=>{
     let password= request.body.password;
     userModel.findOne({email:email,password:password})
     .then((result)=>{
-        return response.status(200). json({result});
+        return response.status(200). json({result:result});
     })
     .catch((err)=>{
-        return response.status(500).json({msg:"something went wrong"});
+        return response.status(500).json({error : err});
     })
     
 }
