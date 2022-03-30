@@ -1,6 +1,7 @@
 // var createError = require('http-errors');
 var express = require('express');
 var mongoose=require("mongoose");
+const cors = require('cors');
 mongoose.connect("mongodb+srv://rootdb:rootdb@angularprojectapi.fgxir.mongodb.net/angularpi?retryWrites=true&w=majority")
 .then(result => {
   console.log("connected");
@@ -8,6 +9,7 @@ mongoose.connect("mongodb+srv://rootdb:rootdb@angularprojectapi.fgxir.mongodb.ne
   console.log(err)
   console.log("not connected");
 });
+app.use(cors());
 var path = require('path');
 // var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
@@ -22,8 +24,8 @@ var app = express();
 
 
 // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
 
 // app.use(logger('dev'));
 app.use(express.json());
