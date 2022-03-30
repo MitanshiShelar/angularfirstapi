@@ -1,7 +1,9 @@
 // var createError = require('http-errors');
 var express = require('express');
+var app = express();
 var mongoose=require("mongoose");
 const cors = require('cors');
+app.use(cors());
 mongoose.connect("mongodb+srv://rootdb:rootdb@angularprojectapi.fgxir.mongodb.net/angularpi?retryWrites=true&w=majority")
 .then(result => {
   console.log("connected");
@@ -9,7 +11,6 @@ mongoose.connect("mongodb+srv://rootdb:rootdb@angularprojectapi.fgxir.mongodb.ne
   console.log(err)
   console.log("not connected");
 });
-app.use(cors());
 var path = require('path');
 // var cookieParser = require('cookie-parser');
 // var logger = require('morgan');
@@ -17,7 +18,6 @@ var path = require('path');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
-var app = express();
 
 
 
