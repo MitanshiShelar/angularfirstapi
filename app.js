@@ -3,6 +3,9 @@ var express = require('express');
 var app = express();
 var mongoose=require("mongoose");
 const cors = require('cors');
+const jwt=require("jsonwebtoken");
+const port=process.env.PORT ||3000;
+
 app.use(cors());
 mongoose.connect("mongodb+srv://rootdb:rootdb@angularprojectapi.fgxir.mongodb.net/angularpi?retryWrites=true&w=majority")
 .then(result => {
@@ -17,11 +20,7 @@ var path = require('path');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-
-
-
-
+var categoryRouter = require("./routes/category");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,10 +31,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+console.log("mit");
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use("/add-category",categoryRouter);
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
 //   next(createError(404));
@@ -51,5 +50,7 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+app.listen(port,()=>{
+  console.log("server is running");
+})
 module.exports = app;
