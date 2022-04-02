@@ -11,8 +11,6 @@ var storage = multer.diskStorage({
 });
 var upload=multer({storage: storage});
 
-router.post("/add",upload.single("categoryImageUrl"),categoryController.addCategory);
-
-
+router.post("/add-category" ,upload.single("categoryImageUrl"),categoryController.addCategory);
 
 module.exports= router;
