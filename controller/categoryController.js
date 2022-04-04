@@ -9,7 +9,7 @@ exports.addCategory = (request,response)=>{
     console.log(request.file.filename);
     categoryModel.create({
          categoryName : request.body.categoryName,
-         categoryImageUrl : "https://angular-first-api-backend.herokuapp.com"+request.file.filename
+         categoryImageUrl : "http://localhost:3000/images/"+request.file.filename
     }).then((result)=>{
         return response.status(201).json(result);
     }).catch(err=>{
