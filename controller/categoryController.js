@@ -4,7 +4,7 @@
 
 
 exports.addCategory = (request,response)=>{
-    console.log("category");
+    // console.log("category");
     console.log(request.body.categoryName);
     console.log(request.file.filename);
     categoryModel.create({
@@ -15,4 +15,13 @@ exports.addCategory = (request,response)=>{
     }).catch(err=>{
         return response.status(500).json({error:"internal server error"});
     });
+  }
+
+  exports.viewCategory=(request,response)=>{
+  categoryModel.find()
+  .then(result=>{
+      return response.status(200).json(result);
+  }).catch(err=>{
+      return response.status(500).json(err);
+  })
   }
