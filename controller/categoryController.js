@@ -20,6 +20,7 @@ exports.addCategory = (request,response)=>{
   exports.viewCategory=(request,response)=>{
   categoryModel.find()
   .then(result=>{
+      console.log(result);
       return response.status(200).json(result);
   }).catch(err=>{
       return response.status(500).json(err);
